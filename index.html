@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wilde Winkel — Accessories</title>
+<link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="Assets/favicon-96x96.png">
+<link rel="shortcut icon" href="Assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="Assets/apple-touch-icon.png">
+<link rel="manifest" href="Assets/site.webmanifest">
+<meta name="theme-color" content="#0e0c0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="Assets/favicon.svg" alt="Wilde Winkel" class="nav-logo-icon">
+    WILDE<span>.</span>WINKEL
+  </div>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#products">Shop</a>
+    <a href="#about">About</a>
+  </div>
+  <div class="nav-right">
+    <div class="search-wrap">
+      <input type="search" id="searchInput" placeholder="Search products…">
+      <button onclick="doSearch()">Search</button>
+    </div>
+    <button class="cart-btn" onclick="openCart()">
+      Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-wrap">
+    <img src="Assets/Banner2.0.jpeg" alt="Wilde Winkel" class="hero-bg-img" id="heroBg">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>BUILT FOR<br>THE <em>VELD</em></h1>
+    <p class="hero-sub">Hunting, farming and outdoor gear made in South Africa.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+      <button class="btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Our Story</button>
+    </div>
+  </div>
+</section>
+
+<!-- CAROUSEL -->
+<section class="carousel-section" id="carousel-section">
+  <div class="section-header">
+    <h2>THE RANGE</h2>
+    <p>Every product built for purpose, built to last</p>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="carousel-track-wrap">
+    <div class="carousel-track" id="carouselTrack">
+      <!-- Slides injected by script.js from carouselSlides data -->
+    </div>
+  </div>
+  <div class="carousel-controls">
+    <button class="carousel-arrow" id="cPrev" aria-label="Previous">&#8592;</button>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <button class="carousel-arrow" id="cNext" aria-label="Next">&#8594;</button>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="shop-section" id="products">
+  <h2>SHOP ALL</h2>
+  <p>Select your category or browse the full collection</p>
+  <div class="filter-row" id="filterRow">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="bags">Bags</button>
+    <button class="filter-btn" data-filter="firearms">Firearms</button>
+    <button class="filter-btn" data-filter="ammo">Ammo</button>
+    <button class="filter-btn" data-filter="accessories">Accessories</button>
+    <button class="filter-btn" data-filter="apparel">Apparel</button>
+  </div>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <h2>PROUDLY <em>SA</em><br>MADE</h2>
+      <p>Wilde Winkel was born from a love of the land and the people who work it. Every product is designed in South Africa, for South African conditions — from the Karoo to the Bushveld.</p>
+      <p>We make the accessories that serious hunters, farmers, and outdoor enthusiasts actually need. No fluff. No compromises. Just gear that works.</p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">South African</div></div>
+        <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Years in the field</div></div>
+        <div class="stat"><div class="stat-num">2 000+</div><div class="stat-label">Happy customers</div></div>
+        <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Braai stories</div></div>
+      </div>
+    </div>
+    <div class="about-img">
+      <img src="Assets/Banner2.0.jpeg" alt="Wilde Winkel in the field">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">WILDE<span>.</span>WINKEL</div>
+  <p>© 2025 Wilde Winkel Accessories. All rights reserved.</p>
+  <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center">
+    <button onclick="openLegalModal('privacy')" class="legal-link">Privacy Policy</button>
+    <button onclick="openLegalModal('terms')" class="legal-link">Terms of Service</button>
+    <button onclick="openLegalModal('cookies')" class="legal-link">Cookie Policy</button>
+    <span style="color:var(--muted);font-size:0.8rem">Built for the Veld.</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     COOKIE CONSENT — appears on first visit
+════════════════════════════════════════════════════ -->
+<div id="cookieBanner" class="cookie-banner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      <strong>We use cookies</strong>
+      <p>We use cookies to keep your cart, remember your preferences and analyse site traffic. See our
+        <button onclick="openLegalModal('cookies')" class="cookie-text-link">Cookie Policy</button> and
+        <button onclick="openLegalModal('privacy')" class="cookie-text-link">Privacy Policy</button> for details.
+      </p>
+    </div>
+    <div class="cookie-banner-actions">
+      <button onclick="acceptCookies()" class="btn-primary" style="padding:10px 24px;font-size:0.8rem">Accept All</button>
+      <button onclick="declineCookies()" class="cookie-decline-btn">Decline</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     LEGAL MODALS — Privacy, Terms, Cookies
+════════════════════════════════════════════════════ -->
+<div class="legal-backdrop" id="legalBackdrop" onclick="closeLegalModal()"></div>
+<div class="legal-modal" id="legalModal">
+  <div class="legal-modal-head">
+    <h3 class="legal-modal-title" id="legalModalTitle">PRIVACY POLICY</h3>
+    <button class="legal-modal-close" onclick="closeLegalModal()">✕</button>
+  </div>
+  <div class="legal-modal-body" id="legalModalBody"></div>
+</div>
+
+<!-- ── LEGAL CONTENT (hidden templates) ──────────────── -->
+<div id="legalContent" style="display:none">
+
+  <div id="legal-privacy">
+    <p class="legal-meta">Last updated: June 2025 · Wilde Winkel Accessories (Pty) Ltd · Registered in South Africa</p>
+    <div class="legal-highlight">By using our website or placing an order, you agree to the collection and use of information as described here.</div>
+
+    <h4>1. Who We Are</h4>
+    <p>Wilde Winkel Accessories (Pty) Ltd operates wildewinkel.co.za. We design and sell outdoor, hunting and vehicle accessories made in South Africa. Contact us at <a href="mailto:info@wildewinkel.co.za">info@wildewinkel.co.za</a> for any privacy queries.</p>
+
+    <h4>2. Information We Collect</h4>
+    <p>We collect information you provide when placing an order (name, email, phone, delivery address) or contacting us. We also automatically collect technical data (IP address, browser type, pages visited) via cookies and analytics tools.</p>
+
+    <h4>3. How We Use Your Information</h4>
+    <p>We use your information to process and fulfil orders, send confirmations and delivery updates, respond to enquiries, improve our website, send marketing where you have opted in, and comply with South African law.</p>
+
+    <h4>4. Payment Processing</h4>
+    <p>All payments are processed by PayFast, a PCI-DSS compliant gateway. We do not store, process or access your card details at any time. See <a href="https://www.payfast.co.za/privacy-policy" target="_blank">PayFast's Privacy Policy</a>.</p>
+
+    <h4>5. Sharing Your Information</h4>
+    <p>We do not sell your information. We share it only with courier partners (for delivery), PayFast (payment processing), Shopify (our platform), and law enforcement where required by South African law.</p>
+
+    <h4>6. Your POPIA Rights</h4>
+    <p>Under the Protection of Personal Information Act (POPIA, Act 4 of 2013) you have the right to access, correct, delete and object to the processing of your personal information. Email us at <a href="mailto:info@wildewinkel.co.za">info@wildewinkel.co.za</a> to exercise any right. We will respond within 30 days. You may also contact the Information Regulator at <a href="https://www.justice.gov.za/inforeg/" target="_blank">justice.gov.za/inforeg</a>.</p>
+
+    <h4>7. Data Retention</h4>
+    <p>We retain order records for 5 years in line with South African tax and commercial law. Other personal data is retained only as long as necessary for the purpose it was collected.</p>
+
+    <h4>8. Data Security</h4>
+    <p>We use HTTPS encryption and reasonable technical measures to protect your data. No internet transmission is 100% secure, but we take all practical steps to protect your information.</p>
+
+    <h4>9. Children</h4>
+    <p>Our website is not directed at children under 18. We do not knowingly collect their personal information.</p>
+
+    <h4>10. Changes</h4>
+    <p>We may update this policy from time to time. The date at the top of this document reflects when it was last changed.</p>
+  </div>
+
+  <div id="legal-terms">
+    <p class="legal-meta">Last updated: June 2025 · Wilde Winkel Accessories (Pty) Ltd · Registered in South Africa</p>
+    <div class="legal-highlight">By accessing wildewinkel.co.za or purchasing from us, you agree to be bound by these Terms.</div>
+
+    <h4>1. Use of the Website</h4>
+    <p>You may use our website for lawful purposes only. You may not use it to breach any South African or international law, transmit spam, attempt unauthorised access to our servers, or reproduce our content without written permission.</p>
+
+    <h4>2. Products and Pricing</h4>
+    <p>All prices are in South African Rand (ZAR) inclusive of VAT. We may change prices at any time. Product images are for illustration — slight colour and finish variations may occur. We reserve the right to limit quantities, refuse or cancel orders, including where a product has been mispriced.</p>
+
+    <h4>3. Ordering</h4>
+    <p>By placing an order you confirm you are 18 or older, legally entitled to purchase the products, and that all information provided is accurate. An order confirmation email does not constitute acceptance — we reserve the right to cancel any order before dispatch with a full refund.</p>
+
+    <h4>4. Payment</h4>
+    <p>All payments are processed through PayFast. We accept cards, EFT and SnapScan. Payment must be received in full before dispatch. We do not store card details.</p>
+
+    <h4>5. Delivery</h4>
+    <p>We deliver within South Africa. Delivery times are estimates only. Risk passes to you upon delivery to the courier. Report damaged or missing deliveries within 48 hours of expected delivery. Delivery costs are calculated at checkout.</p>
+
+    <h4>6. Returns and Refunds (CPA)</h4>
+    <p>In accordance with the Consumer Protection Act: you may return defective, damaged or incorrectly described goods within 7 days of delivery. Goods must be in original condition. Custom items cannot be returned unless defective. Return shipping is the buyer's responsibility unless the error was ours. Refunds are processed within 7 business days.</p>
+
+    <h4>7. Firearms and Regulated Accessories</h4>
+    <p>By purchasing firearm-related accessories you confirm compliance with the Firearms Control Act 60 of 2000 and all applicable South African law. We accept no liability for any unlawful use of products purchased from us.</p>
+
+    <h4>8. Intellectual Property</h4>
+    <p>All website content including text, images, logos and product designs belongs to Wilde Winkel Accessories (Pty) Ltd and is protected by South African and international copyright law. You may not reproduce or distribute it without written permission.</p>
+
+    <h4>9. Limitation of Liability</h4>
+    <p>To the fullest extent permitted by law, our liability is limited to the amount you paid for the relevant order. Nothing in these terms limits liability for death or personal injury caused by our negligence.</p>
+
+    <h4>10. Governing Law</h4>
+    <p>These Terms are governed by the laws of the Republic of South Africa and any disputes are subject to South African courts.</p>
+  </div>
+
+  <div id="legal-cookies">
+    <p class="legal-meta">Last updated: June 2025 · Wilde Winkel Accessories (Pty) Ltd</p>
+    <div class="legal-highlight">This policy explains what cookies we use, why we use them, and how you can control them.</div>
+
+    <h4>What Are Cookies</h4>
+    <p>Cookies are small text files placed on your device when you visit a website. They help remember your preferences and understand how you use the site. They cannot run programs or deliver viruses.</p>
+
+    <h4>Cookies We Use</h4>
+    <table class="cookie-table">
+      <thead><tr><th>Cookie</th><th>Type</th><th>Purpose</th><th>Duration</th></tr></thead>
+      <tbody>
+        <tr><td>ww_cart</td><td>Essential</td><td>Stores your shopping cart between visits</td><td>Until cleared</td></tr>
+        <tr><td>ww_cookie_consent</td><td>Essential</td><td>Remembers your cookie choice</td><td>1 year</td></tr>
+        <tr><td>_shopify_s</td><td>Functional</td><td>Shopify session tracking</td><td>Session</td></tr>
+        <tr><td>_shopify_y</td><td>Functional</td><td>Shopify unique visitor analytics</td><td>1 year</td></tr>
+        <tr><td>_ga, _gid</td><td>Analytics</td><td>Google Analytics — anonymous traffic data</td><td>2 years / 24 hrs</td></tr>
+        <tr><td>pf_*</td><td>Functional</td><td>PayFast — used during checkout only</td><td>Session</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Essential Cookies</h4>
+    <p>These are strictly necessary for the website to work (cart, checkout). You cannot opt out of essential cookies.</p>
+
+    <h4>Analytics Cookies</h4>
+    <p>We use Google Analytics to understand how visitors use our site. All data is anonymous and aggregated. Opt out via <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google's opt-out tool</a>.</p>
+
+    <h4>How to Manage Cookies</h4>
+    <p>You can delete or block cookies through your browser settings:
+      <a href="https://support.google.com/chrome/answer/95647" target="_blank">Chrome</a> ·
+      <a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank">Firefox</a> ·
+      <a href="https://support.apple.com/en-za/guide/safari/sfri11471/mac" target="_blank">Safari</a> ·
+      <a href="https://support.microsoft.com/en-us/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank">Edge</a>
+    </p>
+  </div>
+
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="pm-backdrop" id="pmBackdrop" onclick="closeProductModal()"></div>
+<div class="product-modal" id="productModal">
+  <button class="pm-close" onclick="closeProductModal()">✕</button>
+  <div class="pm-body" id="productModalBody"></div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>YOUR CART</h3>
+    <button class="drawer-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <div style="font-size:2.5rem">🛒</div>
+      <p>Your cart is empty. Start adding some gear!</p>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cartTotal">R0</span>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-backdrop" id="checkoutBackdrop">
+  <div class="modal">
+    <div id="checkoutForm">
+      <div class="modal-head">
+        <h3>CHECKOUT</h3>
+        <button class="modal-close" onclick="closeCheckout()">✕</button>
+      </div>
+      <p class="form-section-title">Contact & Delivery</p>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" id="co-fname" placeholder="Pieter"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" id="co-lname" placeholder="van der Berg"></div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group"><label>Email</label><input type="email" id="co-email" placeholder="pieter@email.com"></div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group"><label>Phone</label><input type="tel" id="co-phone" placeholder="082 000 0000"></div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group"><label>Street Address</label><input type="text" id="co-addr" placeholder="123 Main Rd"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>City</label><input type="text" id="co-city" placeholder="Johannesburg"></div>
+        <div class="form-group"><label>Province</label>
+          <select id="co-prov">
+            <option value="">Select…</option>
+            <option>Gauteng</option><option>Western Cape</option>
+            <option>KwaZulu-Natal</option><option>Eastern Cape</option>
+            <option>Limpopo</option><option>Mpumalanga</option>
+            <option>North West</option><option>Free State</option>
+            <option>Northern Cape</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Postal Code</label><input type="text" id="co-zip" placeholder="2001"></div>
+        <div class="form-group"><label>Country</label><input type="text" value="South Africa" readonly style="opacity:0.5"></div>
+      </div>
+
+      <div class="order-summary-section" id="orderSummary"></div>
+
+      <div class="payfast-notice">
+        <div class="payfast-notice-icon">🔒</div>
+        <div>
+          <strong>Secure Payment via PayFast</strong>
+          <p>You'll be redirected to PayFast to complete your payment safely. PayFast accepts all major cards, EFT, and SnapScan.</p>
+        </div>
+      </div>
+
+      <!-- Hidden PayFast form — submitted programmatically -->
+      <form id="payfastForm" action="https://www.payfast.co.za/eng/process" method="POST" style="display:none"></form>
+
+      <button class="place-order-btn" onclick="placeOrder()">
+        <span>Pay Now with PayFast</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:8px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <p class="payfast-sub">You will be redirected to PayFast's secure checkout</p>
+    </div>
+    <div class="success-msg" id="successMsg">
+      <div class="tick">✅</div>
+      <h3>ORDER PLACED!</h3>
+      <p>Thanks for your order. You'll receive a confirmation email shortly.<br>Expect delivery within 3–5 business days.</p>
+      <button class="btn-primary" style="margin-top:24px" onclick="closeCheckout()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

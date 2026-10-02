@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — Wilde Winkel</title>
+<link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+<link rel="shortcut icon" href="Assets/favicon.ico">
+<meta name="theme-color" content="#0e0c0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  body{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:40px 24px}
+  .ty-card{max-width:520px;width:100%}
+  .ty-icon{font-size:4rem;margin-bottom:24px;animation:pop 0.5s var(--ease-out) both}
+  @keyframes pop{from{transform:scale(0.5);opacity:0}to{transform:none;opacity:1}}
+  .ty-card h1{font-family:var(--ff-display);font-size:clamp(3rem,7vw,5rem);letter-spacing:0.04em;color:var(--orange);margin-bottom:12px}
+  .ty-card p{color:var(--tan);font-size:0.95rem;font-weight:300;line-height:1.8;margin-bottom:8px}
+  .order-ref{font-family:var(--ff-display);font-size:1.1rem;color:var(--warm);letter-spacing:0.1em;margin:20px 0}
+  .home-btn{display:inline-block;margin-top:28px;background:var(--orange);color:#fff;border:none;padding:14px 36px;font-size:0.85rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border-radius:3px;cursor:pointer;text-decoration:none;transition:background 0.2s}
+  .home-btn:hover{background:var(--orange-hot)}
+  .divider{width:48px;height:2px;background:var(--orange);margin:24px auto}
+</style>
+</head>
+<body>
+<div class="ty-card">
+  <div class="ty-icon">✅</div>
+  <h1>ORDER CONFIRMED</h1>
+  <div class="divider"></div>
+  <p>Thank you for your purchase! Your payment was processed securely through PayFast.</p>
+  <p>You'll receive a confirmation email shortly with your order details.</p>
+  <div class="order-ref" id="orderRef"></div>
+  <p style="color:var(--muted);font-size:0.82rem">Delivery within 3–5 business days across South Africa.</p>
+  <a class="home-btn" href="index.html">Back to Shop</a>
+</div>
+<script>
+  // Clear cart on successful return and show order ID
+  const orderId = localStorage.getItem('ww_pending_order');
+  if(orderId){
+    document.getElementById('orderRef').textContent = 'Order ref: ' + orderId;
+    localStorage.removeItem('ww_pending_order');
+    localStorage.removeItem('ww_cart');
+  }
+</script>
+</body>
+</html>
